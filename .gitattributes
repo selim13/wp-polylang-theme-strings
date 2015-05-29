@@ -1,3 +1,4 @@
 * text=auto !eol
 /index.php -text
 /mw-polylang-theme-strings.php -text
+/readme.txt -text
