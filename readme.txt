@@ -3,9 +3,9 @@ Contributors: modeewine
 Donate link: http://modeewine.com/en-donation
 Tags: extension, polylang, multilingual, translate, translation, language, multilanguage, international, localization
 Requires at least: 3.8
-Tested up to: 4.2.2
-Stable tag: 2.0
-License: GPLv2
+Tested up to: 4.3
+Stable tag: 2.1
+License: GPL2
 
 Extension for Polylang plugin
 
@@ -45,6 +45,11 @@ Learn more in <http://modeewine.com/en-polylang-theme-strings>.
 1. Screen of «Polylang» strings translate page settings and when «Polylang Theme Strings» in action.
 
 == Changelog ==
+
+= 2.1 (2015-09-01) =
+
+* Absolute compatibility with WordPress 4.3.
+* Partially improved code.
 
 = 2.0 (2015-06-21) =
 

@@ -4,7 +4,7 @@
     Plugin Name: Polylang Theme Strings
     Plugin URI: http://modeewine.com/en-polylang-theme-strings
     Description: Automatic scanning of strings translation in the theme and registration of them in Polylang plugin.
-    Version: 2.0
+    Version: 2.1
     Author: Modeewine
     Author URI: http://modeewine.com
     License: GPL2
@@ -31,6 +31,10 @@
                 echo '<br />';
                 echo 'The minimum supported PHP version is 5.0.';
                 exit;
+            }
+            else
+            {
+                self::Themes_PLL_Strings_Scan();
             }
         }
 
