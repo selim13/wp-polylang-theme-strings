@@ -3,8 +3,8 @@ Contributors: modeewine
 Donate link: http://modeewine.com/en-donation
 Tags: extension, polylang, multilingual, translate, translation, language, multilanguage, international, localization
 Requires at least: 3.8
-Tested up to: 4.3
-Stable tag: 2.1
+Tested up to: 4.4
+Stable tag: 2.1.1
 License: GPL2
 
 Extension for Polylang plugin
@@ -19,6 +19,7 @@ This plugin gives additional features to the plugin Polylang. It automatically s
 * `pll_e('...');`
 
 and adds them to the Polylang registery, after what you can manage the translation of finded strings through the administration panel. It will make your life easier for the development of multilanguage’s projects, because you will not need to enter the needed strings to translate manually – the plugin will do all the work for you.
+Don’t forget that in the example are described the PHP-function calls, that is why they have to be inside of PHP-tags.
 
 = How works «Polylang Theme Strings»? =
 
@@ -45,6 +46,10 @@ Learn more in <http://modeewine.com/en-polylang-theme-strings>.
 1. Screen of «Polylang» strings translate page settings and when «Polylang Theme Strings» in action.
 
 == Changelog ==
+
+= 2.1.1 (2015-12-17) =
+
+* Tested and optimized compatibility with WordPress 4.4.
 
 = 2.1 (2015-09-01) =
 
