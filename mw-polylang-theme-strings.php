@@ -4,7 +4,7 @@
     Plugin Name: Polylang Theme Strings
     Plugin URI: http://modeewine.com/en-polylang-theme-strings
     Description: Automatic scanning of strings translation in the theme and registration of them in Polylang plugin.
-    Version: 2.1.1
+    Version: 2.2
     Author: Modeewine
     Author URI: http://modeewine.com
     License: GPL2
@@ -45,15 +45,12 @@
             $wpdb->query("DELETE FROM `" . $wpdb->prefix . "options` WHERE `option_name` LIKE '" . self::$prefix . "%'");
         }
 
-        private function Init()
+        public function Init()
         {
             $this->Paths_Init();
-            $this->Plugin_Hooks_Init();
+            $this->Plugin_Install_Hooks_Init();
 
-            if (self::Is_PLL_Strings_Settings_Page())
-            {
-                $this->Themes_PLL_Strings_Scan();
-            }
+            add_action('init', array($this, 'Plugin_Hooks_Init'));
         }
 
         private function Paths_Init()
@@ -71,19 +68,23 @@
             );
         }
 
-        private function Plugin_Hooks_Init()
+        private function Plugin_Install_Hooks_Init()
         {
             register_activation_hook($this->Path_Get('plugin_file_index'), array('MW_Polylang_Theme_Strings', 'Install'));
             register_uninstall_hook($this->Path_Get('plugin_file_index'), array('MW_Polylang_Theme_Strings', 'Uninstall'));
+        }
 
+        public function Plugin_Hooks_Init()
+        {
             if (!is_admin() && function_exists(self::$pll_f))
             {
-                add_action('init', array($this, 'Theme_Current_PLL_Strings_Init'));
+                $this->Theme_Current_PLL_Strings_Init();
             }
             else
             if (self::Is_PLL_Strings_Settings_Page())
             {
-                add_action('init', array($this, 'Themes_PLL_Strings_Init'));
+                $this->Themes_PLL_Strings_Scan();
+                $this->Themes_PLL_Strings_Init();
             }
         }
 
