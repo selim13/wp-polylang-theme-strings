@@ -1,4 +1,8 @@
 * text=auto !eol
+css/admin.css -text
+css/index.php -text
 /index.php -text
+js/admin.js -text
+js/index.php -text
 /mw-polylang-theme-strings.php -text
 /readme.txt -text
