@@ -4,7 +4,7 @@
     Plugin Name: Polylang Theme Strings
     Plugin URI: http://modeewine.com/en-polylang-theme-strings
     Description: Automatic scanning of strings translation in the theme and registration of them in Polylang plugin. Extension for Polylang plugin.
-    Version: 3.0
+    Version: 3.1
     Author: Modeewine
     Author URI: http://modeewine.com
     License: GPL2
@@ -15,17 +15,17 @@
     class MW_Polylang_Theme_Strings
     {
         static $prefix = 'mw_polylang_strings_';
-        static $plugin_version = '3.0';
+        static $plugin_version = '3.1';
         static $pll_f = 'pll_register_string';
         private $paths;
         private $var = array();
 
-        function __construct()
+        public function __construct()
         {
             $this->Init();
         }
 
-        public function Install()
+        public static function Install()
         {
             if (!version_compare(phpversion(), '5', '>='))
             {
@@ -89,6 +89,13 @@
             if (self::Is_PLL_Strings_Settings_Page())
             {
                 $this->Themes_PLL_Strings_Scan();
+
+                if (!pll_default_language())
+                {
+                    wp_redirect(admin_url('options-general.php?page=mlang'));
+                    exit;
+                }
+
                 $this->Themes_PLL_Strings_Init();
             }
         }
@@ -159,7 +166,7 @@
             }
         }
 
-        static function Files_Recursive_Get($dir)
+        public static function Files_Recursive_Get($dir)
         {
             $files = array();
 
@@ -186,7 +193,7 @@
             return $files;
         }
 
-        static function Is_PLL_Strings_Settings_Page()
+        public static function Is_PLL_Strings_Settings_Page()
         {
             if
             (
@@ -200,7 +207,7 @@
             }
         }
 
-        static function Is_WP_Plugins_Page()
+        public static function Is_WP_Plugins_Page()
         {
             if (preg_match("/\/plugins.php[^a-z0-9]?/uis", $_SERVER['REQUEST_URI']))
             {
@@ -208,7 +215,7 @@
             }
         }
 
-        private function Themes_PLL_Strings_Scan()
+        private static function Themes_PLL_Strings_Scan()
         {
             $themes = wp_get_themes();
 
