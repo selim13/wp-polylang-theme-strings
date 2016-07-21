@@ -4,7 +4,7 @@
     Plugin Name: Polylang Theme Strings
     Plugin URI: http://modeewine.com/en-polylang-theme-strings
     Description: Automatic scanning of strings translation in the theme and registration of them in Polylang plugin. Extension for Polylang plugin.
-    Version: 3.2
+    Version: 3.2.1
     Author: Modeewine
     Author URI: http://modeewine.com
     License: GPL2
@@ -15,7 +15,7 @@
     class MW_Polylang_Theme_Strings
     {
         static $prefix = 'mw_polylang_strings_';
-        static $plugin_version = '3.2';
+        static $plugin_version = '3.2.1';
         static $pll_f = 'pll_register_string';
         private $paths;
         private $var = array();
@@ -66,7 +66,6 @@
             $this->paths = array(
                 'plugin_file_index' => __FILE__,
                 'plugin_url'        => plugins_url('/', __FILE__),
-                'themes'            => WP_CONTENT_DIR . get_theme_roots(),
                 'theme'             => $theme,
                 'theme_dir_name'    => $theme_dir_name,
                 'theme_name'        => wp_get_theme()->Name

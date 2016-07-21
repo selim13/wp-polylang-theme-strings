@@ -4,7 +4,7 @@ Donate link: http://modeewine.com/en-donation
 Tags: extension, polylang, multilingual, translate, translation, language, multilanguage, international, localization
 Requires at least: 3.8
 Tested up to: 4.5
-Stable tag: 3.2
+Stable tag: 3.2.1
 License: GPL2
 
 Automatic scanning of strings translation in the theme and registration of them in Polylang plugin. Extension for Polylang plugin.
@@ -44,6 +44,10 @@ Learn more in <http://modeewine.com/en-polylang-theme-strings>.
 1. Screen of «Polylang» strings translate page settings and when «Polylang Theme Strings» in action.
 
 == Changelog ==
+
+= 3.2.1 (2016-07-21) =
+
+* Fixed small bug (Thanks to Peter Bowyer).
 
 = 3.2 (2016-06-28) =
 
