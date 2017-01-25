@@ -4,7 +4,7 @@
     Plugin Name: Polylang Theme Strings
     Plugin URI: http://modeewine.com/en-polylang-theme-strings
     Description: Automatic scanning of strings translation in the theme and registration of them in Polylang plugin. Extension for Polylang plugin.
-    Version: 3.3.1
+    Version: 3.3.2
     Author: Modeewine
     Author URI: http://modeewine.com
     License: GPL2
@@ -15,7 +15,7 @@
     class MW_Polylang_Theme_Strings
     {
         static $prefix = 'mw_polylang_strings_';
-        static $plugin_version = '3.3.1';
+        static $plugin_version = '3.3.2';
         static $pll_f = 'pll_register_string';
         private $paths;
         private $var = array();
@@ -91,7 +91,15 @@
 
                 if (!pll_default_language())
                 {
-                    wp_redirect(admin_url('options-general.php?page=mlang'));
+                    if (defined('POLYLANG_VERSION') && (float)POLYLANG_VERSION < 2.1)
+                    {
+                        wp_redirect(admin_url('options-general.php?page=mlang'));
+                    }
+                    else // for Polylang >= 2.1
+                    {
+                        wp_redirect(admin_url('admin.php?page=mlang'));
+                    }
+
                     exit;
                 }
 
@@ -117,8 +125,25 @@
                     if (typeof(window.<?php echo self::$prefix; ?>admin) == 'object')
                     {
                         window.<?php echo self::$prefix; ?>admin.attr.prefix = '<?php echo self::$prefix; ?>';
-                        window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings'] = '<?php echo admin_url('options-general.php?page=mlang&tab=strings'); ?>';
-                        window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings_theme_current'] = '<?php echo admin_url('options-general.php?page=mlang&tab=strings&s&group=' . __('Theme') . ': ' . wp_get_theme()->Name . '&paged=1'); ?>';
+
+                        <?php
+
+                            if (defined('POLYLANG_VERSION') && (float)POLYLANG_VERSION < 2.1)
+                            {
+                                ?>
+                                window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings'] = '<?php echo admin_url('options-general.php?page=mlang&tab=strings'); ?>';
+                                window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings_theme_current'] = '<?php echo admin_url('options-general.php?page=mlang&tab=strings&s&group=' . __('Theme') . ': ' . wp_get_theme()->Name . '&paged=1'); ?>';
+                                <?php
+                            }
+                            else // for Polylang >= 2.1
+                            {
+                                ?>
+                                window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings'] = '<?php echo admin_url('admin.php?page=mlang_strings'); ?>';
+                                window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings_theme_current'] = '<?php echo admin_url('admin.php?page=mlang_strings&s&group=' . __('Theme') . ': ' . wp_get_theme()->Name . '&paged=1'); ?>';
+                                <?php
+                            }
+
+                        ?>
 
                         window.<?php echo self::$prefix; ?>admin.lng[10] = '<?php _e('Polylang Theme Strings'); ?>';
                         window.<?php echo self::$prefix; ?>admin.lng[11] = '<?php _e('works'); ?>';
@@ -144,7 +169,18 @@
                 <script type="text/javascript">
                     if (typeof(window.<?php echo self::$prefix; ?>admin) == 'object')
                     {
-                        window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings'] = '<?php echo admin_url('options-general.php?page=mlang&tab=strings'); ?>';
+                        window.<?php echo self::$prefix; ?>admin.attr.urls['polylang_strings'] = '<?php
+
+                            if (defined('POLYLANG_VERSION') && (float)POLYLANG_VERSION < 2.1)
+                            {
+                                echo admin_url('options-general.php?page=mlang&tab=strings');
+                            }
+                            else // for Polylang >= 2.1
+                            {
+                                echo admin_url('admin.php?page=mlang_strings');
+                            }
+
+                        ?>';
 
                         window.<?php echo self::$prefix; ?>admin.lng[70] = '<?php _e('Go to polylang-strings settings page'); ?>';
 
@@ -198,8 +234,11 @@
             (
                 is_admin() &&
                 function_exists(self::$pll_f) &&
-                (isset($_REQUEST['page']) && $_REQUEST['page'] == 'mlang') &&
-                (isset($_REQUEST['tab']) && $_REQUEST['tab'] == 'strings')
+                isset($_REQUEST['page']) &&
+                (
+                    ($_REQUEST['page'] == 'mlang' && isset($_REQUEST['tab']) && $_REQUEST['tab'] == 'strings') ||
+                    $_REQUEST['page'] == 'mlang_strings' // for Polylang >= 2.1
+                )
             )
             {
                 return true;
