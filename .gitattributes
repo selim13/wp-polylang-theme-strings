@@ -1,6 +1,8 @@
 * text=auto !eol
 css/admin.css -text
 css/index.php -text
+img/icon-128x128.png -text
+img/index.php -text
 /index.php -text
 js/admin.js -text
 js/index.php -text
