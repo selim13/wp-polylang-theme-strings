@@ -1,4 +1,5 @@
 * text=auto !eol
+/actions.php -text
 css/admin.css -text
 css/index.php -text
 img/icon-128x128.png -text
@@ -8,3 +9,5 @@ js/admin.js -text
 js/index.php -text
 /mw-polylang-theme-strings.php -text
 /readme.txt -text
+templates/admin-page-settings.php -text
+templates/index.php -text
