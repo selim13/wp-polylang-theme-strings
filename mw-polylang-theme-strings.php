@@ -1,7 +1,7 @@
 <?php
 
     /*
-    Plugin Name: Polylang Theme Strings
+    Plugin Name: Polylang Theme Strings (Fork)
     Plugin URI: http://modeewine.com/en-polylang-theme-strings
     Description: Automatic scanning of strings translation in the theme and registration of them in Polylang plugin. Extension for Polylang plugin.
     Version: 4.0
@@ -86,8 +86,8 @@
         }
 
         private function Plugin_Install_Hooks_Init(){
-            register_activation_hook($this->Path_Get('plugin_file_index'), array($this, 'Install'));
-            register_uninstall_hook($this->Path_Get('plugin_file_index'), array($this, 'Uninstall'));
+            register_activation_hook($this->Path_Get('plugin_file_index'), 'Install');
+            register_uninstall_hook($this->Path_Get('plugin_file_index'), 'Uninstall');
             add_action('upgrader_process_complete', array($this, 'Plugin_Upgrade'), 10, 2);
         }
 
