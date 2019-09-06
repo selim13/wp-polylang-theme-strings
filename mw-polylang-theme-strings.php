@@ -332,7 +332,7 @@
             if (is_array($files) && count($files)){
                 foreach($files as $v){
                     if (preg_match("/\/.*?\.(php[0-9]?|inc)$/uis", $v)){
-                        preg_match_all("/(?:\<\?.*?\?\>)|(?:\<\?.*?[^\?]+[^\>]+)/uis", file_get_contents($v), $p);
+                        preg_match_all("/(?:\<\?.*?\?\>)|(?:\<\?.*?[^\?]+[^\>]+)|(?:\{\{.*?\}\})|(?:\{\!\!.*?\!\!\})|(?:@php.*?@endphp)/uis", file_get_contents($v), $p);
 
                         if (count($p[0])){
                             foreach ($p[0] as $pv){
