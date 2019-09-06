@@ -1,0 +1,32 @@
+{
+  "name": "selim13/wp-polylang-theme-strings",
+  "type": "wordpress-plugin",
+  "license": "GPL-2",
+  "description": "Automatic scanning of strings translation in the theme and registration of them in Polylang plugin. Extension for Polylang plugin. Fork with Blade support.",
+  "homepage": "https://github.com/selim13/wp-polylang-theme-strings",
+  "authors": [
+    {
+      "name": "Modeewine",
+      "homepage": "http://modeewine.com"
+    },
+    {
+      "name": "Dmitry Seleznyov",
+      "email": "selim013@gmail.com",
+      "homepage": "https://github.com/selim13"
+    }
+  ],
+  "keywords": [
+    "extension",
+    "polylang",
+    "multilingual",
+    "translate",
+    "translation",
+    "language",
+    "multilanguage",
+    "international",
+    "localization"
+  ],
+  "require": {
+    "php": ">=5.6.0"
+  }
+}
